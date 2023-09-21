@@ -130,6 +130,7 @@ func reuseOrCreateReaper(ctx context.Context, sessionID string, provider ReaperP
 		// Can't use Container.IsRunning because the bool is not updated when Reaper is terminated
 		state, err := reaperInstance.container.State(ctx)
 		if err != nil {
+			Logger.Printf("State: err=%v", err)
 			return nil, err
 		}
 
@@ -148,6 +149,7 @@ func reuseOrCreateReaper(ctx context.Context, sessionID string, provider ReaperP
 		// The reaper container exists as a Docker container: re-use it
 		endpoint, err := reaperContainer.PortEndpoint(ctx, "8080", "")
 		if err != nil {
+			Logger.Printf("PortEndpoint: err=%v", err)
 			return nil, err
 		}
 
