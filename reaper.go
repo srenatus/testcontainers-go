@@ -161,6 +161,9 @@ func reuseOrCreateReaper(ctx context.Context, sessionID string, provider ReaperP
 
 		return reaperInstance, nil
 	}
+	if err != nil {
+		Logger.Printf("error was %v", err)
+	}
 
 	// 3. the reaper container does not exist in the Docker daemon: create it, and do it using the
 	// synchronization primitive to avoid multiple executions of this function to create the reaper
