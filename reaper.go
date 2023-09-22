@@ -218,6 +218,7 @@ func newReaper(ctx context.Context, sessionID string, provider ReaperProvider, o
 			hc.AutoRemove = true
 			hc.NetworkMode = Bridge
 		},
+		Env: map[string]string{"RYUK_RECONNECTION_TIMEOUT": "5m"},
 	}
 
 	// keep backwards compatibility
